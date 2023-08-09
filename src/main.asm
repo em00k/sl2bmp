@@ -8,7 +8,7 @@
 main:
         jp      begin 
         db      "SL2BMP"
-        db      "0.6-em00k"
+        db      "0.7-em00k"
 
         include "esxdos.asm"
 
@@ -27,7 +27,7 @@ commandlineOK:
 
         nextreg $69,1<<7
 
-        call    getsetdrive
+        ; call    getsetdrive
 
         ld      hl,(commandline)                                                     ; get back command line        ; call    getsetdrive 
 
@@ -117,7 +117,7 @@ end_out:
         ei 
         ret   
 
-emptyline               db      "SL2BMP .6 - em00k 090823",13,13
+emptyline               db      "SL2BMP .7 - em00k 090823",13,13
                         ;        -------------------------------
                         db      "Converts SL2 to a BMP.",13
                         db      "Uses first L2 palette.",13,13
@@ -147,7 +147,7 @@ output_handle:
 ; Source Includes 
 
         include "utils.asm"
-        include "layer2.asm"
+        include "layer2-9bit.asm"
 
 
 ;------------------------------------------------------------------------------
@@ -177,5 +177,5 @@ stack_top:
         ; SAVENEX AUTO 
         ; SAVENEX CLOSE
 
-        savebin "sl2bmp",main,endofdot-main
-        ; savebin "s",main,endofdot-main
+        savebin "h:/dot/sl2bmp",main,endofdot-main
+        savebin "s",main,endofdot-main
